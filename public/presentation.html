@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUGGI CLUB — Cafe Partner Presentation Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #244832;
+      --forest-dark: #193323;
+      --coffee: #49301F;
+      --cream: #F5F0E6;
+      --cream-light: #FAF7F0;
+      --gold: #B99A61;
+      --gold-dark: #9A7E4A;
+      --offwhite: #FFFEFA;
+      --text: #2D2016;
+      --muted: #6B5E55;
+      --border: #E8E1D5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--coffee);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Top presentation control bar */
+    .topbar {
+      height: 54px;
+      background: rgba(25, 51, 35, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(185, 154, 97, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      color: var(--offwhite);
+      z-index: 100;
+    }
+
+    .brand-tag {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--offwhite);
+      letter-spacing: 0.5px;
+    }
+
+    .brand-badge {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      background: rgba(185, 154, 97, 0.2);
+      color: var(--gold);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--offwhite);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--forest);
+      border-color: var(--gold);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--forest-dark);
+      border-color: var(--gold);
+    }
+
+    .btn-gold:hover {
+      background: #c9ab73;
+    }
+
+    .slide-counter {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--gold);
+      padding: 0 8px;
+    }
+
+    /* Main Deck Stage */
+    .deck-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at center, #2e4a36 0%, #172a1d 100%);
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1100px;
+      height: 90vh;
+      max-height: 660px;
+      background: var(--offwhite);
+      border-radius: 24px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(185, 154, 97, 0.3);
+      padding: 48px 56px;
+      position: relative;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Slide Content Typography */
+    .slide-header {
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--gold-dark);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    h1.slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      line-height: 1.15;
+      color: var(--forest);
+      font-weight: 700;
+    }
+
+    p.slide-subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .slide-body {
+      flex: 1;
+    }
+
+    .slide-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Component styles */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.2s;
+    }
+
+    .card-forest {
+      background: var(--forest);
+      color: var(--offwhite);
+      border-color: rgba(185, 154, 97, 0.4);
+    }
+
+    .card-forest h3 {
+      color: var(--gold);
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--forest);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .card-forest p {
+      color: #dfd8cc;
+    }
+
+    .metric-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--cream);
+      color: var(--forest);
+    }
+
+    /* Table styles */
+    .deck-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .deck-table th {
+      background: var(--cream);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 700;
+      color: var(--forest);
+      border-bottom: 2px solid var(--border);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .deck-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .deck-table tr:hover {
+      background: var(--cream-light);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 4px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+      z-index: 101;
+    }
+
+    /* Title Slide Specifics */
+    .title-slide {
+      background: linear-gradient(135deg, #1f3d2b 0%, #132419 100%);
+      color: var(--offwhite);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 64px 80px;
+    }
+
+    .title-slide .brand-badge {
+      background: var(--gold);
+      color: var(--forest-dark);
+      margin-bottom: 16px;
+    }
+
+    .title-slide h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      line-height: 1.1;
+      color: var(--offwhite);
+      margin-bottom: 16px;
+    }
+
+    .title-slide h1 span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .title-slide p.lead {
+      font-size: 20px;
+      color: #dfd8cc;
+      max-width: 640px;
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .title-slide .meta-row {
+      display: flex;
+      gap: 32px;
+      border-top: 1px solid rgba(185, 154, 97, 0.3);
+      padding-top: 24px;
+      width: 100%;
+    }
+
+    .title-slide .meta-item p.val {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .title-slide .meta-item p.lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a3988b;
+    }
+
+    /* Print styling */
+    @media print {
+      body {
+        overflow: visible;
+        height: auto;
+        background: white;
+      }
+      .topbar, .progress-bar {
+        display: none !important;
+      }
+      .deck-container {
+        padding: 0;
+        background: none;
+        display: block;
+      }
+      .slide {
+        display: flex !important;
+        page-break-after: always;
+        max-width: 100%;
+        max-height: none;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        padding: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar Controls -->
+  <header class="topbar">
+    <div class="brand-tag">
+      <span class="brand-name">SUGGI<span style="color:var(--gold);"> CLUB</span></span>
+      <span class="brand-badge">Cafe Partner Pitch Deck</span>
+    </div>
+
+    <div class="controls">
+      <button class="btn" onclick="prevSlide()" title="Previous (Left Arrow)">◀ Prev</button>
+      <span class="slide-counter" id="slideCounter">1 / 10</span>
+      <button class="btn" onclick="nextSlide()" title="Next (Right Arrow / Space)">Next ▶</button>
+      <button class="btn btn-gold" onclick="window.print()" title="Print / Save to PDF">🖨️ Save as PDF</button>
+      <button class="btn" onclick="toggleFullScreen()" title="Full Screen (F)">⛶ Fullscreen</button>
+    </div>
+  </header>
+
+  <div class="progress-bar" id="progressBar" style="width: 10%;"></div>
+
+  <!-- Main Slide Deck -->
+  <main class="deck-container">
+
+    <!-- SLIDE 1: Title Slide -->
+    <div class="slide title-slide active" data-index="1">
+      <div>
+        <span class="brand-badge">A SUGGI GLOBAL INITIATIVE · BENGALURU PILOT</span>
+        <h1>SUGGI <span>CLUB</span></h1>
+        <p class="lead">Discover Cafes. Subscribe to Coffee. Enjoy Every Day.</p>
+        <p style="font-size:14px; color:#b0a595; max-width:600px; margin-bottom:24px;">
+          Uniting Bengaluru's premier independent specialty roasteries under a single, seamless coffee subscription pass.
+        </p>
+      </div>
+
+      <div class="meta-row">
+        <div class="meta-item">
+          <p class="val">Bengaluru</p>
+          <p class="lbl">Launch Market</p>
+        </div>
+        <div class="meta-item">
+          <p class="val">₹50 / ₹80</p>
+          <p class="lbl">Guaranteed Cup Payout</p>
+        </div>
+        <div class="meta-item">
+          <p class="val">Weekly</p>
+          <p class="lbl">Direct Bank Settlement</p>
+        </div>
+        <div class="meta-item">
+          <p class="val">Zero</p>
+          <p class="lbl">Hardware or Setup Cost</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Problem in Bengaluru -->
+    <div class="slide" data-index="2">
+      <div class="slide-header">
+        <div class="eyebrow">Market Dynamics in Bengaluru</div>
+        <h1 class="slide-title">The Challenge in Specialty Coffee</h1>
+        <p class="slide-subtitle">High consumer costs vs. weekday cafe capacity under-utilization.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <h3>For Bengaluru Coffee Lovers</h3>
+            <ul style="margin-top:12px; margin-left:18px; font-size:13px; line-height:1.8; color:var(--text);">
+              <li><strong>High Daily Expense</strong>: Quality cups retail between ₹180 to ₹280. Daily visits cost ₹6,000+ monthly.</li>
+              <li><strong>Fragmented Discovery</strong>: Finding artisanal micro-lots across Indiranagar, Koramangala, and Ulsoor lacks an overarching pass.</li>
+              <li><strong>Unfair Auto-Billing Fears</strong>: Aggressive recurring charges deter subscription adoption.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>For Independent Cafe Partners</h3>
+            <ul style="margin-top:12px; margin-left:18px; font-size:13px; line-height:1.8; color:var(--text);">
+              <li><strong>Weekday Slump</strong>: Tuesday–Thursday mornings and afternoons operate with excess barista and seating capacity.</li>
+              <li><strong>High Aggregator Fees</strong>: Food delivery platforms take 25–30% cuts while destroying the in-store roastery experience.</li>
+              <li><strong>Acquisition Burden</strong>: Turning casual walk-ins into predictable weekly regulars requires costly ad spend.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 2 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: The Solution -->
+    <div class="slide" data-index="3">
+      <div class="slide-header">
+        <div class="eyebrow">The Value Ecosystem</div>
+        <h1 class="slide-title">How SUGGI CLUB Bridges the Gap</h1>
+        <p class="slide-subtitle">A win-win specialty coffee pass driving frequent in-person visits.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card card-forest">
+            <h3>1. The Customer</h3>
+            <p style="margin-top:8px;">Purchases a prepaid 7-day or 30-day pass (3 to 15 coffee credits) at wholesale economies of scale (₹66–₹83/cup).</p>
+            <div style="margin-top:16px; font-weight:700; color:var(--gold);">Save 40%+ on Cafe Retail</div>
+          </div>
+
+          <div class="card card-forest">
+            <h3>2. The Cafe Partner</h3>
+            <p style="margin-top:8px;">Receives continuous member footfall during non-peak hours, guaranteed weekly payouts, and high-margin food cross-sells.</p>
+            <div style="margin-top:16px; font-weight:700; color:var(--gold);">Zero Commission Slashing</div>
+          </div>
+
+          <div class="card card-forest">
+            <h3>3. SUGGI GLOBAL</h3>
+            <p style="margin-top:8px;">Powers the frictionless technology, single-use anti-fraud QR engine, marketing, and consolidated financial reconciliation.</p>
+            <div style="margin-top:16px; font-weight:700; color:var(--gold);">Conscious Indian Agribusiness</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 3 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Why Partner With Us -->
+    <div class="slide" data-index="4">
+      <div class="slide-header">
+        <div class="eyebrow">Cafe Benefits</div>
+        <h1 class="slide-title">Four Reasons to Join as a Cafe Partner</h1>
+        <p class="slide-subtitle">Zero risk, guaranteed payouts, and real in-store footfall growth.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <span class="pill" style="margin-bottom:8px;">📈 Predictable Demand</span>
+            <h3>1. Incremental In-Store Footfall</h3>
+            <p>Our subscribers visit cafes an average of 3 to 4 times per week. We turn quiet weekday hours into vibrant community sessions without discounting your brand image.</p>
+          </div>
+
+          <div class="card">
+            <span class="pill" style="margin-bottom:8px;">🥐 82% Food Attachment</span>
+            <h3>2. High-Margin Food & Merch Upsell</h3>
+            <p>Coffee is the hook; pastry and food is your profit. Over 80% of our coffee pass members purchase croissants, avocado toasts, cookies, or roasted bean bags during their visit.</p>
+          </div>
+
+          <div class="card">
+            <span class="pill" style="margin-bottom:8px;">⚡ 10-Minute Setup</span>
+            <h3>3. Zero Hardware or Integration Costs</h3>
+            <p>Baristas use any smartphone, tablet, or POS terminal browser. No clunky external card machines, software downloads, or upfront setup fees.</p>
+          </div>
+
+          <div class="card">
+            <span class="pill" style="margin-bottom:8px;">🏦 Direct Settlements</span>
+            <h3>4. Weekly Direct Bank Payouts</h3>
+            <p>Every coffee poured is recorded with a permanent snapshot rate and transferred directly to your bank account every Monday morning via NEFT/RTGS with UTR reconciliation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 4 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Customer Plans & Pricing -->
+    <div class="slide" data-index="5">
+      <div class="slide-header">
+        <div class="eyebrow">Subscription Products</div>
+        <h1 class="slide-title">Configured Subscription Plans</h1>
+        <p class="slide-subtitle">Designed for travellers, hybrid tech professionals, and everyday regulars.</p>
+      </div>
+
+      <div class="slide-body">
+        <table class="deck-table">
+          <thead>
+            <tr>
+              <th>Plan Name</th>
+              <th>Price</th>
+              <th>Validity</th>
+              <th>Credits</th>
+              <th>Cost / Cup</th>
+              <th>Menu Eligibility</th>
+              <th>Daily Cap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Weekly Explorer</strong></td>
+              <td>₹249</td>
+              <td>7 Days</td>
+              <td>3 Cups</td>
+              <td>₹83</td>
+              <td>Standard Hot & Cold Brews</td>
+              <td>2 cups/day</td>
+            </tr>
+            <tr style="background:#FAF7F0;">
+              <td><strong>Coffee 10</strong> <span class="pill" style="background:#244832; color:#fff; font-size:9px;">Popular</span></td>
+              <td>₹699</td>
+              <td>30 Days</td>
+              <td>10 Cups</td>
+              <td>₹70</td>
+              <td>Standard Espresso, Flat White, Cold Brew</td>
+              <td>2 cups/day</td>
+            </tr>
+            <tr>
+              <td><strong>Coffee 15</strong> <span class="pill" style="background:#B99A61; color:#244832; font-size:9px;">Best Value</span></td>
+              <td>₹999</td>
+              <td>30 Days</td>
+              <td>15 Cups</td>
+              <td>₹66</td>
+              <td>Standard Hot & Cold Brews</td>
+              <td>2 cups/day</td>
+            </tr>
+            <tr>
+              <td><strong>Premium Club</strong></td>
+              <td>₹1,499</td>
+              <td>30 Days</td>
+              <td>15 Cups</td>
+              <td>₹100</td>
+              <td>Single-Origin V60, Chemex, Nitro & Clarified</td>
+              <td>3 cups/day</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="card" style="margin-top:20px; padding:16px 20px; background:#FAF7F0;">
+          <p style="font-size:12px; color:var(--forest); font-weight:600;">
+            ✓ Safe Customer Policy: Zero auto-renewal charges without explicit consent. Subscribers manually choose when to renew their pass.
+          </p>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 5 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: QR Anti-Fraud Technology -->
+    <div class="slide" data-index="6">
+      <div class="slide-header">
+        <div class="eyebrow">Enterprise Security</div>
+        <h1 class="slide-title">Server-Controlled QR Redemption Engine</h1>
+        <p class="slide-subtitle">100% fraud-proof, single-use, 90-second cryptographic tokens.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2" style="align-items:center;">
+          <div class="card card-forest">
+            <h3 style="color:var(--gold);">Counter Flow in 5 Steps</h3>
+            <ol style="margin-top:14px; margin-left:18px; font-size:12px; line-height:1.9;">
+              <li><strong>Member Requests Pass</strong>: Taps 'Open Pass' in web app at cafe.</li>
+              <li><strong>Server Generates Token</strong>: Cryptographically secure 32-character token valid for 90 seconds.</li>
+              <li><strong>Barista Scan</strong>: Staff scans QR on mobile partner terminal.</li>
+              <li><strong>Atomic DB Lock</strong>: Server verifies active pass, deducts exactly 1 credit, and marks token consumed.</li>
+              <li><strong>Fresh Brew Served</strong>: Immediate green confirmation screen.</li>
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3>Strict Security Guarantees</h3>
+            <div style="display:flex; flex-direction:column; gap:12px; margin-top:14px; font-size:12px;">
+              <div style="border-left:3px solid var(--forest); padding-left:12px;">
+                <strong>No Static QR Code:</strong> QR expires in 90 seconds. Screenshots cannot be re-used.
+              </div>
+              <div style="border-left:3px solid var(--forest); padding-left:12px;">
+                <strong>Atomic Transaction Locks:</strong> Concurrent requests cannot double-spend a single credit.
+              </div>
+              <div style="border-left:3px solid var(--forest); padding-left:12px;">
+                <strong>Tenant Isolation:</strong> One cafe cannot view another cafe's private sales or customer logs.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 6 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Partner Economics & Payout Model -->
+    <div class="slide" data-index="7">
+      <div class="slide-header">
+        <div class="eyebrow">Financial Model</div>
+        <h1 class="slide-title">Partner Payouts & Unit Economics</h1>
+        <p class="slide-subtitle">Guaranteed fixed rate per cup, paid every Monday.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card" style="text-align:center;">
+            <p style="font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase;">Standard Drinks</p>
+            <div class="metric-big" style="color:var(--forest); margin:12px 0;">₹50.00</div>
+            <p style="font-size:12px; color:var(--text);">Net Payout per Cup</p>
+            <p style="font-size:11px; color:var(--muted); margin-top:4px;">Espresso, Latte, Flat White, Cold Brew</p>
+          </div>
+
+          <div class="card" style="text-align:center;">
+            <p style="font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase;">Premium Drinks</p>
+            <div class="metric-big" style="color:var(--gold-dark); margin:12px 0;">₹80.00</div>
+            <p style="font-size:12px; color:var(--text);">Net Payout per Cup</p>
+            <p style="font-size:11px; color:var(--muted); margin-top:4px;">Single-Origin V60, Chemex, Nitro Brews</p>
+          </div>
+
+          <div class="card" style="text-align:center;">
+            <p style="font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase;">Settlement Cycle</p>
+            <div class="metric-big" style="color:var(--forest); margin:12px 0;">Weekly</div>
+            <p style="font-size:12px; color:var(--text);">Every Monday</p>
+            <p style="font-size:11px; color:var(--muted); margin-top:4px;">Direct NEFT/RTGS with bank reference UTR</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:20px; background:var(--forest); color:var(--offwhite);">
+          <div class="grid-2" style="align-items:center;">
+            <div>
+              <h3 style="color:var(--gold);">Sample Partner Earnings (15 cups/day)</h3>
+              <p style="font-size:12px; color:#e0d8cc; margin-top:4px;">105 cups weekly across morning and afternoon hours.</p>
+            </div>
+            <div style="text-align:right;">
+              <span style="font-size:26px; font-family:'Playfair Display', serif; font-weight:700; color:var(--gold);">₹5,250 – ₹8,400 / wk</span>
+              <p style="font-size:11px; color:#c7bea8;">Direct Bank Deposit + In-Store Food Attachment</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 7 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: Bengaluru Launch Roasteries -->
+    <div class="slide" data-index="8">
+      <div class="slide-header">
+        <div class="eyebrow">Pilot Cohort</div>
+        <h1 class="slide-title">Bengaluru's Curated Neighborhoods</h1>
+        <p class="slide-subtitle">Targeting tech hubs, creative clusters, and coffee lover destinations.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card">
+            <h3>Target Neighborhoods</h3>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:12px; font-size:13px;">
+              <div><strong>Ulsoor & Halasuru:</strong> Lakeside morning runners and creative professionals.</div>
+              <div><strong>Indiranagar (12th & 100ft Rd):</strong> High-density tech workers and weekend brunchers.</div>
+              <div><strong>Koramangala (80ft Rd):</strong> Startup founders, investors, and hybrid remote teams.</div>
+              <div><strong>Church Street & CBD:</strong> Central footfall, shoppers, and university students.</div>
+              <div><strong>HSR Layout:</strong> Rapidly expanding startup developer hubs.</div>
+            </div>
+          </div>
+
+          <div class="card card-forest">
+            <h3 style="color:var(--gold);">Curated Benchmark Roasteries</h3>
+            <p style="font-size:12px; color:#d8cebf; margin-top:8px;">Joining hands with Bengaluru's most respected names:</p>
+            <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px; font-size:12px;">
+              <div>☕ <strong>Maverick & Farmer Coffee</strong> (Ulsoor)</div>
+              <div>☕ <strong>Araku World Specialty Coffee</strong> (Indiranagar)</div>
+              <div>☕ <strong>Blue Tokai Coffee Roasters</strong> (Koramangala)</div>
+              <div>☕ <strong>Third Wave Coffee</strong> (Church Street)</div>
+              <div>☕ <strong>Paper & Pie</strong> (Indiranagar)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 8 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: Partner Onboarding -->
+    <div class="slide" data-index="9">
+      <div class="slide-header">
+        <div class="eyebrow">Easy Launch</div>
+        <h1 class="slide-title">Getting Your Cafe Live in 3 Steps</h1>
+        <p class="slide-subtitle">Zero complicated tech integrations. Go live within 24 hours.</p>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="card" style="position:relative;">
+            <div style="font-family:'Playfair Display', serif; font-size:42px; font-weight:700; color:var(--forest); opacity:0.25; position:absolute; top:12px; right:16px;">01</div>
+            <h3>1. Quick Registration</h3>
+            <p style="margin-top:10px;">Fill our 5-minute online onboarding form at <code>/partner/register</code> with your cafe address, FSSAI number, and bank payout details.</p>
+          </div>
+
+          <div class="card" style="position:relative;">
+            <div style="font-family:'Playfair Display', serif; font-size:42px; font-weight:700; color:var(--forest); opacity:0.25; position:absolute; top:12px; right:16px;">02</div>
+            <h3>2. Curate Eligible Menu</h3>
+            <p style="margin-top:10px;">Select 4 to 6 coffees you want eligible on the pass. Toggle between Standard (₹50) and Premium (₹80) payout tiers.</p>
+          </div>
+
+          <div class="card" style="position:relative;">
+            <div style="font-family:'Playfair Display', serif; font-size:42px; font-weight:700; color:var(--forest); opacity:0.25; position:absolute; top:12px; right:16px;">03</div>
+            <h3>3. 10-Min Staff Briefing</h3>
+            <p style="margin-top:10px;">Provide your counter baristas with a secure PIN/login. Complete one test QR scan on your phone or POS tablet. You are live!</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:20px; background:#FAF7F0;">
+          <div class="grid-2" style="align-items:center;">
+            <div>
+              <h4 style="font-family:'Playfair Display', serif; font-size:16px; color:var(--forest);">Need assistance or a tasting visit?</h4>
+              <p style="font-size:12px; color:var(--muted); margin-top:2px;">Our Bengaluru partnership leads are available for roastery visits every day.</p>
+            </div>
+            <div style="text-align:right;">
+              <span class="pill" style="background:var(--forest); color:var(--offwhite); font-size:12px;">partners@club.suggiglobal.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-footer">
+        <span>SUGGI CLUB · Partner Pitch</span>
+        <span>Slide 9 of 10</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 10: Conclusion & Call to Action -->
+    <div class="slide title-slide" data-index="10" style="text-align:center; align-items:center;">
+      <div>
+        <span class="brand-badge">JOIN THE BENGALURU PILOT</span>
+        <h1 style="font-size:48px;">Let's Brew <span>Together</span></h1>
+        <p class="lead" style="max-width:700px; margin:0 auto 28px;">
+          Empower your roastery with high-frequency regulars, zero tech overhead, and guaranteed weekly bank payouts.
+        </p>
+
+        <div style="display:flex; justify-content:center; gap:16px; margin-bottom:32px;">
+          <a href="http://localhost:3000/partner/register" target="_blank" style="text-decoration:none;">
+            <button class="btn btn-gold" style="font-size:14px; padding:12px 24px;">Register Cafe Now ↗</button>
+          </a>
+          <a href="http://localhost:3000" target="_blank" style="text-decoration:none;">
+            <button class="btn" style="font-size:14px; padding:12px 24px;">View Live App ↗</button>
+          </a>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(185, 154, 97, 0.3); padding-top:20px; font-size:12px; color:#b0a595;">
+        SUGGI GLOBAL (OPC) PRIVATE LIMITED · Indiranagar, Bengaluru, Karnataka<br>
+        Web: club.suggiglobal.com · Email: partners@club.suggiglobal.com
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function showSlide(index) {
+      if (index < 1) index = 1;
+      if (index > totalSlides) index = totalSlides;
+
+      currentSlide = index;
+
+      document.querySelectorAll('.slide').forEach((slide) => {
+        slide.classList.remove('active');
+      });
+
+      const activeSlide = document.querySelector(`.slide[data-index="${currentSlide}"]`);
+      if (activeSlide) {
+        activeSlide.classList.add('active');
+      }
+
+      document.getElementById('slideCounter').innerText = `${currentSlide} / ${totalSlides}`;
+      document.getElementById('progressBar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+          console.log('Fullscreen error:', err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullScreen();
+      } else if (e.key === 'Home') {
+        showSlide(1);
+      } else if (e.key === 'End') {
+        showSlide(totalSlides);
+      }
+    });
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) nextSlide();
+      if (touchEndX - touchStartX > 50) prevSlide();
+    });
+  </script>
+</body>
+</html>

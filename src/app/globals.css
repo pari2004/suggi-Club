@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #244832;
+  --color-forest-dark: #193323;
+  --color-forest-light: #326345;
+  --color-coffee: #49301F;
+  --color-coffee-dark: #352317;
+  --color-coffee-light: #614029;
+  --color-cream: #F5F0E6;
+  --color-cream-light: #FAF7F0;
+  --color-gold: #B99A61;
+  --color-gold-dark: #9A7E4A;
+  --color-gold-light: #CFB584;
+  --color-offwhite: #FFFEFA;
+}
+
+:root {
+  --font-serif: Georgia, "Playfair Display", Cambria, serif;
+}
+
+body {
+  background-color: #FFFEFA;
+  color: #2D2016;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0E6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B99A61;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9A7E4A;
+}
+
+/* Pulse animation for QR countdown */
+@keyframes qrPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+
+.animate-qr-pulse {
+  animation: qrPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
